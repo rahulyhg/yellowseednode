@@ -33,26 +33,7 @@ var schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Category',
     index: true
-  },
-  subtype : [{
-      title : {
-        type : String,
-        default: ""
-      },
-      content : {
-        type: String,
-        default : ""
-      },
-      order: {
-        type: Number,
-        default: 0
-      },
-
-      status: {
-        type: String,
-        enum: ["true", "false"]
-      }
-  }]
+  }
 });
 
 schema.plugin(deepPopulate, {});

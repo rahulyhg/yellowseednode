@@ -16,6 +16,10 @@ var schema = new Schema({
   url: {
       type: String,
       default: ""
+  },
+  status:{
+    type: String,
+    default: ""
   }
 });
 

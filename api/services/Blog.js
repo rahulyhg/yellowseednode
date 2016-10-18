@@ -1,10 +1,10 @@
-var objectid = require("mongodb").ObjectId;
 var mongoose = require('mongoose');
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var uniqueValidator = require('mongoose-unique-validator');
 var timestamps = require('mongoose-timestamp');
 var validators = require('mongoose-validators');
 var monguurl = require('monguurl');
+var objectid = require("mongodb").ObjectId;
 require('mongoose-middleware').initialize(mongoose);
 
 var Schema = mongoose.Schema;
