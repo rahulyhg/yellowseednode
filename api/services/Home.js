@@ -9,14 +9,22 @@ require('mongoose-middleware').initialize(mongoose);
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
+  
   banner: {
     type: String,
     default: " "
   },
+
+  mobilebanner: {
+    type: String,
+    default: " "
+  },
+
   url: {
       type: String,
       default: ""
   },
+
   status:{
     type: String,
     default: ""

@@ -15,25 +15,25 @@ var schema = new Schema({
     default : ""
   },
 
-  content : {
+  banner : {
     type: String,
     default : ""
   },
 
   order: {
     type: Number,
-    default: 0
+    default: "0"
   },
 
   status: {
     type: String,
     enum: ["true", "false"]
   },
-  parent: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-    index: true
-  }
+  // parent: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Category',
+  //   index: true
+  // }
 });
 
 schema.plugin(deepPopulate, {});

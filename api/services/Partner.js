@@ -14,6 +14,7 @@ var schema = new Schema({
     default : ""
   },
 
+
   order: {
     type: Number,
     default: 0
@@ -28,18 +29,12 @@ var schema = new Schema({
     type: String,
     default : ""
   },
-
-
-  // type: {
-  //   type: String,
-  //   enum: ["Agencies","Bands","Client"]
-  // }
 });
 
 schema.plugin(deepPopulate, {});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
-module.exports = mongoose.model('Client', schema);
+module.exports = mongoose.model('Partner', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {};

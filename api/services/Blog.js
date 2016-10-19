@@ -25,6 +25,11 @@ var schema = new Schema({
      default: " "
    },
 
+   date: {
+        type: Date,
+        default: Date.now()
+    },
+
    tags: [{
        type: Schema.Types.ObjectId,
        ref: 'Tags',
