@@ -32,7 +32,7 @@ var schema = new Schema({
 
    tags: [{
        type: Schema.Types.ObjectId,
-       ref: 'Tags',
+       ref: 'Tag',
        index: true
    }],
 
@@ -59,5 +59,45 @@ schema.plugin(timestamps);
 module.exports = mongoose.model('Blog', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
-var model = {};
+var model = {
+
+  getOneBlog: function(data, callback) {
+          var newreturns = {};
+          newreturns.blog = [];
+          newreturns.related = [];
+          this.findOne({
+              "_id": data._id
+          }).populate("tags", "name").exec(function(err, found) {
+              if (err) {
+                  console.log(err);
+                  callback(err, null);
+              } else {
+                // console.log(found);
+                  newreturns.blog = found;
+                  if (found && found.tags) {
+                      Blog.find({
+                          tags: {
+                              $in: found.tags
+                          },
+                          _id: {
+                              $nin: found._id
+                          }
+                      }).limit(3).exec(function(err, data2) {
+                          if (err) {
+                              console.log(err);
+                              callback(err, null);
+                          } else {
+                              newreturns.related = data2;
+                              callback(null, newreturns);
+                          }
+                      });
+                  } else {
+                      callback(null, newreturns);
+                  }
+              }
+          });
+      },
+
+
+};
 module.exports = _.assign(module.exports, exports, model);
