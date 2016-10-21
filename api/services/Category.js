@@ -19,6 +19,10 @@ var schema = new Schema({
     type: String,
     default : ""
   },
+  categoryUrl: {
+      type: String,
+      default: ""
+  },
 
   order: {
     type: Number,
