@@ -14,7 +14,6 @@ var schema = new Schema({
        type: String,
        default: " "
    },
-
    image: {
        type: String,
        default: ""
@@ -53,12 +52,19 @@ var schema = new Schema({
    }
 });
 
-schema.plugin(deepPopulate, {});
+schema.plugin(deepPopulate, {
+  populate:{
+    'tags':{
+      select:" _id name"
+    }
+  }
+
+});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Blog', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema,'tags','tags'));
 var model = {
 
   getOneBlog: function(data, callback) {
@@ -67,7 +73,7 @@ var model = {
           newreturns.related = [];
           this.findOne({
               "_id": data._id
-          }).populate("tags", "name").exec(function(err, found) {
+          }).populate("tags", "_id name").exec(function(err, found) {
               if (err) {
                   console.log(err);
                   callback(err, null);
