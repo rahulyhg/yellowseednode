@@ -1,5 +1,17 @@
 module.exports = _.cloneDeep(require("sails-wohlig-controller"));
 var controller = {
+
+
+    getBlogDetails: function (req, res) {
+        if (req.body) {
+            Blog.getBlogDetails(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: "Invalid Request"
+            });
+     }
+    },
   getOneBlog: function(req, res) {
        if (req.body) {
            if (req.body._id && req.body._id != "") {
