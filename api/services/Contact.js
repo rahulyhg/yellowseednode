@@ -31,7 +31,10 @@ var schema = new Schema({
   status: {
     type: String,
     enum: ["true", "false"]
-  }
+  },
+  category :{
+    type: String
+  },
 });
 
 schema.plugin(deepPopulate, {});
